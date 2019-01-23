@@ -1,0 +1,6 @@
+spring:
+    application:
+        name: graindepot-base
+
+server:
+    port: 8005 #启动端口
