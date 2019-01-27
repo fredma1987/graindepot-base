@@ -11,6 +11,7 @@
 	<groupId>graindepot-base</groupId>
 	<artifactId>graindepot-base</artifactId>
 	<version>1.0.0</version>
+	<packaging>war</packaging>
 	<name>graindepot-base</name>
 	<description>粮库云-基础服务</description>
 	<properties>
