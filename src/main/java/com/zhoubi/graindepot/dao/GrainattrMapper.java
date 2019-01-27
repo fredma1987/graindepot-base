@@ -1,1 +1,0 @@
-package com.zhoubi.graindepot.dao;import com.zhoubi.graindepot.bean.Grainattr;import com.zhoubi.graindepot.base.BaseMapper;public interface GrainattrMapper extends BaseMapper<Grainattr> {}

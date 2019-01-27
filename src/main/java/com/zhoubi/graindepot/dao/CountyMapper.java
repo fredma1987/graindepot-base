@@ -1,1 +1,0 @@
-package com.zhoubi.graindepot.dao;import com.zhoubi.graindepot.bean.County;import com.zhoubi.graindepot.base.BaseMapper;public interface CountyMapper extends BaseMapper<County> {}

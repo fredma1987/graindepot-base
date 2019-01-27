@@ -1,0 +1,1 @@
+package com.zhoubi.graindepot.mapper;import com.zhoubi.graindepot.base.BaseMapper;import com.zhoubi.graindepot.bean.Storagetype;public interface StoragetypeMapper extends BaseMapper<Storagetype> {}

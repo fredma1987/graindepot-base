@@ -1,1 +1,0 @@
-package com.zhoubi.graindepot.dao;import com.zhoubi.graindepot.bean.City;import com.zhoubi.graindepot.base.BaseMapper;public interface CityMapper extends BaseMapper<City> {}
