@@ -34,4 +34,6 @@ public interface SelectorMapper {
 
     List<Storagetype> storagetypeList(Map param);
 
+    List<Storage> storageList(Map param);
+
 }

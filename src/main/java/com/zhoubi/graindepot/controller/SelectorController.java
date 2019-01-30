@@ -31,8 +31,11 @@ public class SelectorController extends BaseController {
     }
     //市州下拉框
     @GetMapping("cityList")
-    public List<City> cityList(HttpServletRequest request){
+    public List<City> cityList(HttpServletRequest request,Integer provinceid){
         Map param=new HashMap();
+        if (provinceid!=null) {
+            param.put("provinceid",provinceid);
+        }
         List<City> cityList=selectorBiz.cityList(param);
         return cityList;
     }
@@ -90,7 +93,9 @@ public class SelectorController extends BaseController {
     //往来单位下拉框
     @GetMapping("traderList")
     public List<Trader> traderList(HttpServletRequest request) {
+        UserAddress ua = getUserAddress();
         Map param = new HashMap();
+        param.put("graindepotid",ua.getGraindepotid());
         List<Trader> resultList = selectorBiz.traderList(param);
         return resultList;
 
@@ -123,5 +128,7 @@ public class SelectorController extends BaseController {
         return resultList;
 
     }
+
+
 
 }

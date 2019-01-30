@@ -65,4 +65,9 @@ public class SelectorBiz {
         return mapper.storagetypeList(param);
     }
 
+    public List<Storage> storageList(Map param){
+        return mapper.storageList(param);
+    }
+
+
 }
