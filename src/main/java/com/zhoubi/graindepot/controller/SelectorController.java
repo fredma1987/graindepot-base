@@ -72,6 +72,21 @@ public class SelectorController extends BaseController {
         return resultList;
 
     }
+    //仓房下拉框
+    @GetMapping("storageList")
+    public List<Storage> storageList(HttpServletRequest request, Integer graindepotid) {
+        Map param = new HashMap();
+        if (graindepotid != null) {
+            param.put("graindepotid", graindepotid);
+        }else{
+            UserAddress ua = getUserAddress();
+            if(ua!=null)
+                param.put("graindepotid", ua.getGraindepotid());
+        }
+        List<Storage> resultList = selectorBiz.storageList(param);
+        return resultList;
+
+    }
     //粮食品种下拉框
     @GetMapping("grainList")
     public List<Grain> grainList(HttpServletRequest request) {
