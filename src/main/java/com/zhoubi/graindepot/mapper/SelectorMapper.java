@@ -35,5 +35,7 @@ public interface SelectorMapper {
     List<Storagetype> storagetypeList(Map param);
 
     List<Storage> storageList(Map param);
+    List<Settle> settleList(Map param);
 
+    List<Account> accountList(Map param);
 }

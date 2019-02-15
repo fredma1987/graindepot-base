@@ -143,6 +143,24 @@ public class SelectorController extends BaseController {
         return resultList;
 
     }
+    //结算方式下拉框
+    @GetMapping("settleList")
+    public List<Settle> settleList(HttpServletRequest request) {
+        Map param = new HashMap();
+        List<Settle> resultList = selectorBiz.settleList(param);
+        return resultList;
+
+    }
+    //账户下拉框
+    @GetMapping("accountList")
+    public List<Account> accountList(HttpServletRequest request) {
+        UserAddress ua = getUserAddress();
+        Map param = new HashMap();
+        param.put("graindepotid",ua.getGraindepotid());
+        List<Account> resultList = selectorBiz.accountList(param);
+        return resultList;
+
+    }
 
 
 

@@ -68,6 +68,12 @@ public class SelectorBiz {
     public List<Storage> storageList(Map param){
         return mapper.storageList(param);
     }
+    public List<Settle> settleList(Map param){
+        return mapper.settleList(param);
+    }
 
 
+    public List<Account> accountList(Map param) {
+        return mapper.accountList(param);
+    }
 }
