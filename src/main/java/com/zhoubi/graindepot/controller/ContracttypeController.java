@@ -41,7 +41,7 @@ public class ContracttypeController extends BaseController {
     @PostMapping("/edit")
     public JsonResult contracttypeEdit(Contracttype item) throws ParseException {
 
-        if (item.getContTypeID() == null) {
+        if (item.getConttypeid() == null) {
             //新增
             contracttypeBiz.insert(item);
             return new JsonResult("添加成功", true);
@@ -64,10 +64,10 @@ public class ContracttypeController extends BaseController {
     }
 
     @PostMapping("/checkRepeat")
-    public String checkRepeat(String contTypeName, Integer contTypeID) {
+    public String checkRepeat(String conttypename, Integer conttypeid) {
         Map map = new HashMap();
-        map.put("contTypeName", contTypeName);
-        map.put("contTypeID", contTypeID);
+        map.put("conttypename", conttypename);
+        map.put("conttypeid", conttypeid);
         int result = contracttypeBiz.checkRepeat(map);
         if (result == 0) {
             return "{\"valid\":true}";

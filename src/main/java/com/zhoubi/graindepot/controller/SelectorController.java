@@ -118,10 +118,10 @@ public class SelectorController extends BaseController {
 
     //合同类型下拉框
     @GetMapping("contracttypeList")
-    public List<Contracttype> contracttypeList(HttpServletRequest request,Integer buySellFlag) {
+    public List<Contracttype> contracttypeList(HttpServletRequest request,Integer buysellflag) {
         Map param = new HashMap();
-        if (buySellFlag!=null) {
-            param.put("buySellFlag",buySellFlag);
+        if (buysellflag!=null) {
+            param.put("buysellflag",buysellflag);
         }
         List<Contracttype> resultList = selectorBiz.contracttypeList(param);
         return resultList;
