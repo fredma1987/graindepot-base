@@ -38,4 +38,8 @@ public interface SelectorMapper {
     List<Settle> settleList(Map param);
 
     List<Account> accountList(Map param);
+
+    List<BaseMenu> menuList(Map param);
+
+    List<BaseUgroup> ugroupList(Map param);
 }

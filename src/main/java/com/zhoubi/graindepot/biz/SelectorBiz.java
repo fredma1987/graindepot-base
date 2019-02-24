@@ -76,4 +76,12 @@ public class SelectorBiz {
     public List<Account> accountList(Map param) {
         return mapper.accountList(param);
     }
+
+    public List<BaseMenu> menuList(Map param) {
+        return mapper.menuList(param);
+    }
+
+    public List<BaseUgroup> ugroupList(Map param) {
+        return mapper.ugroupList(param);
+    }
 }

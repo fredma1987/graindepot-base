@@ -3,9 +3,7 @@ package com.zhoubi.graindepot.controller;
 import com.zhoubi.graindepot.bean.*;
 import com.zhoubi.graindepot.biz.SelectorBiz;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -31,53 +29,41 @@ public class SelectorController extends BaseController {
     }
     //市州下拉框
     @GetMapping("cityList")
-    public List<City> cityList(HttpServletRequest request,Integer provinceid){
-        Map param=new HashMap();
-        if (provinceid!=null) {
-            param.put("provinceid",provinceid);
-        }
+    public List<City> cityList(HttpServletRequest request,@RequestParam Map param){
         List<City> cityList=selectorBiz.cityList(param);
         return cityList;
     }
     //区县下拉框
     @GetMapping("countyList")
-    public List<County> countyList(HttpServletRequest request){
-        Map param=new HashMap();
+    public List<County> countyList(HttpServletRequest request,@RequestParam Map param){
         List<County> countyList=selectorBiz.countyList(param);
         return countyList;
     }
     //集团下拉框
     @GetMapping("groupList")
-    public List<Group> groupList(HttpServletRequest request){
-        Map param=new HashMap();
+    public List<Group> groupList(HttpServletRequest request,@RequestParam Map param){
         List<Group> groupList=selectorBiz.groupList(param);
         return groupList;
     }
     //企业下拉框
     @GetMapping("companyList")
-    public List<Company> companyList(HttpServletRequest request) {
-        Map param = new HashMap();
+    public List<Company> companyList(HttpServletRequest request,@RequestParam Map param) {
         List<Company> resultList = selectorBiz.companyList(param);
         return resultList;
 
     }
     //粮库下拉框
     @GetMapping("graindepotList")
-    public List<Graindepot> graindepotList(HttpServletRequest request, Integer companyid) {
-        Map param = new HashMap();
-        if (companyid != null) {
-            param.put("companyid", companyid);
-        }
+    public List<Graindepot> graindepotList(HttpServletRequest request, @RequestParam Map param) {
         List<Graindepot> resultList = selectorBiz.graindepotList(param);
         return resultList;
 
     }
     //仓房下拉框
     @GetMapping("storageList")
-    public List<Storage> storageList(HttpServletRequest request, Integer graindepotid) {
-        Map param = new HashMap();
-        if (graindepotid != null) {
-            param.put("graindepotid", graindepotid);
+    public List<Storage> storageList(HttpServletRequest request, @RequestParam Map param) {
+        if (param.get("graindepotid") != null) {
+            param.put("graindepotid", param.get("graindepotid"));
         }else{
             UserAddress ua = getUserAddress();
             if(ua!=null)
@@ -161,7 +147,21 @@ public class SelectorController extends BaseController {
         return resultList;
 
     }
-
-
+    //菜单下拉框
+    @GetMapping("menuList")
+    public List<BaseMenu> menuList(HttpServletRequest request) {
+        UserAddress ua = getUserAddress();
+        Map param = new HashMap();
+        List<BaseMenu> resultList = selectorBiz.menuList(param);
+        return resultList;
+    }
+    //用户组下拉框
+    @GetMapping("ugroupList")
+    public List<BaseUgroup> ugroupList(HttpServletRequest request) {
+        UserAddress ua = getUserAddress();
+        Map param = new HashMap();
+        List<BaseUgroup> resultList = selectorBiz.ugroupList(param);
+        return resultList;
+    }
 
 }
