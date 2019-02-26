@@ -16,7 +16,7 @@
             </li>
             <li>
                 <i class="icon-table home-icon"></i>
-                粮食性质
+                仓房类型
             </li>
         </ul>
     </div>
@@ -24,19 +24,19 @@
         <div class="col-sm-3">
             <button class="btn btn-sm btn-primary" onclick="toAdd()">
                 <i class="icon-plus align-top bigger-125"></i>
-                添加粮食性质
+                添加仓房类型
             </button>
             <button class="btn btn-sm btn-danger" onclick="doDel()">
                 <i class="icon-trash align-top bigger-125"></i>
-                删除粮食性质
+                删除仓房类型
             </button>
         </div>
         <div class="col-sm-8">
 
             <div class="col-sm-4">
                 <div class="input-group">
-                    <span class="input-group-addon">粮食性质名称:</span>
-                    <input id="grainattrname" name="grainattrname" type="text"
+                    <span class="input-group-addon">仓房类型名称:</span>
+                    <input id="storagetypename" name="storagetypename" type="text"
                            class="form-control">
                 </div>
             </div>
@@ -69,12 +69,9 @@
                         <span class="lbl"></span>
                     </label>
                 </th>
-                <th style="width: 100px">粮食性质编码</th>
-                <th style="width: 100px">粮食性质名称</th>
-                <th style="width: 100px">粮食性质国标编码</th>
+                <th style="width: 100px">仓房类型名称</th>
                 <th style="width: 100px">排序号</th>
                 <th style="width: 100px">操作</th>
-
             </tr>
             </thead>
         </table>
@@ -109,17 +106,15 @@
         theTable = $('#myTable').bootstrapTable({
             //数据来源（包括处理分页，排序，过滤） ，即url，action，接口，等等
             ajax: {
-                url: urlPrefix + "/grainattr/list/page",
+                url: urlPrefix + "/storagetype/list/page",
                 data: param,
                 type: "GET"
             },
             columns: [
-                {data: "grainattrcode"},
-                {data: "grainattrname"},
-                {data: "gbgrainattrcode"},
+                {data: "storagetypename"},
                 {data: "orderno"},
                 {
-                    data: "grainattrid",
+                    data: "storagetypeid",
                     render: function (data, type, row) {
                         return '<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">' +
                                 '<a class="green" href="javascript:toEdit(' + data + ')"' +
@@ -140,7 +135,7 @@
     }
     function getParam() {
         var param = {};
-        param.grainattrname = $("#grainattrname").val();
+        param.storagetypename = $("#storagetypename").val();
         return param
     }
 
@@ -167,9 +162,9 @@
             callback: function (result) {
                 if (result) {
                     var ids = checkedList.map(function (curr) {
-                        return curr.grainattrid
+                        return curr.storagetypeid
                     });
-                    $.post(urlPrefix + "/grainattr/del", {ids: ids.join(",")}, function (result) {
+                    $.post(urlPrefix + "/storagetype/del", {ids: ids.join(",")}, function (result) {
                         $.bootstrapBox.alert.init({
                             message: result.message
                         });
@@ -185,8 +180,8 @@
 
     function toAdd() {
         $.bootstrapBox.dialog.init({
-            title: "新增粮食性质",
-            url: urlPrefix + "/page/grainattr/edit",
+            title: "新增仓房类型",
+            url: urlPrefix + "/page/storagetype/edit",
             width: $(window).width() * 0.6,
             height: $(window).height() * 0.4
         })
@@ -194,23 +189,13 @@
 
     function toEdit(id) {
         $.bootstrapBox.dialog.init({
-            title: "修改粮食性质",
-            url: urlPrefix + "/page/grainattr/edit?id=" + id,
+            title: "修改仓房类型",
+            url: urlPrefix + "/page/storagetype/edit?id=" + id,
             width: $(window).width() * 0.6,
             height: $(window).height() * 0.4
         })
     }
 
-
-    /* function toDetail(userid) {
-     $.bootstrapBox.dialog.init({
-     title: "粮食性质详情",
-     url: urlPrefix + "/page/grainattr/detail/" + userid,
-     width: $(window).width() * 0.5,
-     height: $(window).height() * 0.5
-     })
-     }
-     */
 
     function toSave(result) {
         $.bootstrapBox.dialog.close();

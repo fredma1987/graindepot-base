@@ -31,21 +31,21 @@
                 删除合同类型
             </button>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-8">
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="input-group">
                     <span class="input-group-addon">购销标志:</span>
-                    <select id="buySellFlag" class="form-control" style="height: 34px;">
+                    <select id="buysellflag" name="buysellflag" class="form-control" style="height: 34px;">
                     </select>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <button class="btn btn-sm btn-success" onclick="javascript:searchTable()">
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-success" onclick="searchTable()">
                     <i class="icon-search align-top bigger-125"></i>
                     查询
                 </button>
-                <button class="btn btn-sm btn-warning" onclick="javascript:rest()">
+                <button class="btn btn-sm btn-warning" onclick="rest()">
                     <i class="icon-undo align-top bigger-125"></i>
                     重置
                 </button>
@@ -71,6 +71,7 @@
                 </th>
                 <th style="width: 100px">购销标志</th>
                 <th style="width: 100px">合同类型</th>
+                <th style="width: 100px">合同类型编号</th>
                 <th style="width: 100px">操作</th>
 
             </tr>
@@ -89,8 +90,8 @@
 
 
 <script type="text/javascript">
-    //var urlPrefix="/graindepot-bussiness";
-    var urlPrefix = "";
+    var urlPrefix="/graindepot-base";
+    //var urlPrefix = "";
     var theTable;
     function selectOnchang(o) {
         //获取全部打钩的check的值
@@ -105,7 +106,7 @@
 
     function initBuySellFlag() {
         var data = [{value: 1, text: "采购"}, {value: -1, text: "销售"}];
-        $("#buySellFlag").bootstrapSelect({
+        $("#buysellflag").bootstrapSelect({
             data: data,
             valueField: 'value',
             textField: 'text'
@@ -121,10 +122,11 @@
                 type: "GET"
             },
             columns: [
-                {data: "buySellFlagStr"},
-                {data: "contTypeName"},
+                {data: "buysellflagstr"},
+                {data: "conttypename"},
+                {data: "conttypecode"},
                 {
-                    data: "contTypeID",
+                    data: "conttypeid",
                     render: function (data, type, row) {
                         return '<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">' +
                                 '<a class="green" href="javascript:toEdit(' + data + ')"' +
@@ -132,13 +134,7 @@
                                 '>' +
                                 '<i class="icon-pencil bigger-130"></i>' +
                                 '</a>' +
-                                '<a class="blue" href="javascript:toDetail(' + data + ')"' +
-                                'title="详情"' +
-                                '>' +
-                                '<i class="icon-eye-open bigger-130"></i>' +
-                                '</a>' +
                                 '</div>';
-
                     }
                 }
             ]
@@ -151,7 +147,7 @@
     }
     function getParam() {
         var param = {};
-        param.buySellFlag = $("#buySellFlag").bootstrapSelect("getValue");
+        param.buysellflag = $("#buysellflag").bootstrapSelect("getValue");
         return param
     }
 
@@ -167,19 +163,19 @@
 
 
     function doDel() {
-        console.log($('#myTable').bootstrapTable("getChecked"))
+        console.log($('#myTable').bootstrapTable("getChecked"));
         var checkedList = $('#myTable').bootstrapTable("getChecked");
         if (checkedList.length == 0) {
-            $.bootstrapBox.alert.init({message: "请选择需要删除的行"})
+            $.bootstrapBox.alert.init({message: "请选择需要删除的行"});
             return
         }
         $.bootstrapBox.confirm.init({
             message: "确认删除？",
             callback: function (result) {
                 if (result) {
-                    //删除合同
+                    //删除合同类型
                     var ids = checkedList.map(function (curr) {
-                        return curr.contTypeID
+                        return curr.conttypeid
                     });
                     $.post(urlPrefix + "/contracttype/del", {ids: ids.join(",")}, function (result) {
                         $.bootstrapBox.alert.init({

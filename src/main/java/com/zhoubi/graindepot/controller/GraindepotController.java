@@ -2,8 +2,8 @@ package com.zhoubi.graindepot.controller;
 
 import com.zhoubi.graindepot.base.JsonResult;
 import com.zhoubi.graindepot.base.PagerModel;
-import com.zhoubi.graindepot.bean.Contracttype;
-import com.zhoubi.graindepot.biz.ContracttypeBiz;
+import com.zhoubi.graindepot.bean.Graindepot;
+import com.zhoubi.graindepot.biz.GraindepotBiz;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,56 +19,56 @@ import java.util.Map;
  * Created by 1A12 on 2019/1/19/0019.
  */
 @RestController
-@RequestMapping("contracttype")
-public class ContracttypeController extends BaseController {
+@RequestMapping("graindepot")
+public class GraindepotController extends BaseController {
     @Autowired
-    private ContracttypeBiz contracttypeBiz;
+    private GraindepotBiz graindepotBiz;
 
     @GetMapping("/list/page")
-    public PagerModel contracttypePageList(int start, int length, Integer buysellflag) {
-        PagerModel<Contracttype> e = new PagerModel();
-        e.addOrder("conttypeid desc");
+    public PagerModel graindepotPageList(int start, int length, String graindepotname) {
+        PagerModel<Graindepot> e = new PagerModel();
+        e.addOrder("graindepotid desc");
         e.setStart(start);
         e.setLength(length);
-        if (buysellflag != null) {
-            e.putWhere("buysellflag", buysellflag);
+        if (graindepotname != null) {
+            e.putWhere("graindepotname", "%"+graindepotname+"%");
         }
-        PagerModel<Contracttype> result = contracttypeBiz.selectListByPage(e);
+        PagerModel<Graindepot> result = graindepotBiz.selectListByPage(e);
         return result;
     }
-    @GetMapping
 
     @PostMapping("/edit")
-    public JsonResult contracttypeEdit(Contracttype item) throws ParseException {
+    public JsonResult graindepotEdit(Graindepot item) throws ParseException {
 
-        if (item.getConttypeid() == null) {
+        if (item.getGraindepotid() == null) {
             //新增
-            contracttypeBiz.insert(item);
+            graindepotBiz.insert(item);
             return new JsonResult("添加成功", true);
         } else {
             //修改
-            contracttypeBiz.update(item);
+            graindepotBiz.update(item);
             return new JsonResult("修改成功", true);
         }
 
     }
 
     @PostMapping("/del")
-    public JsonResult contracttypeDel(String ids) {
+    public JsonResult graindepotDel(String ids) {
         if (StringUtils.isNotEmpty(ids)) {
             Map map = new HashMap();
             map.put("Where_IdsStr", ids);
-            contracttypeBiz.deleteMap(map);
+            graindepotBiz.deleteMap(map);
         }
         return new JsonResult("删除成功", true);
     }
 
     @PostMapping("/checkRepeat")
-    public String checkRepeat(String conttypename, Integer conttypeid) {
+    public String checkRepeat(String graindepotname, Integer graindepotid,Integer companyid) {
         Map map = new HashMap();
-        map.put("conttypename", conttypename);
-        map.put("conttypeid", conttypeid);
-        int result = contracttypeBiz.checkRepeat(map);
+        map.put("graindepotname", graindepotname);
+        map.put("graindepotid", graindepotid);
+        map.put("companyid", companyid);
+        int result = graindepotBiz.checkRepeat(map);
         if (result == 0) {
             return "{\"valid\":true}";
         } else {

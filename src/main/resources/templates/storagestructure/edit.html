@@ -11,41 +11,23 @@
 
 <body style="overflow-x: hidden">
 <form class="form-horizontal" role="form" id="validation-form" method="get">
-
     <div class="form-group">
-        <label class="col-sm-4 control-label no-padding-right" for="conttypecode">
-            合同类型编号:
-        </label>
-
-        <div class="col-sm-4">
-            <input type="text" name="conttypecode" id="conttypecode" class="form-control"
-                   th:value="${item.conttypecode}"
-                   placeholder="合同类型编号"/>
-        </div>
+        <label class="col-sm-4 control-label no-padding-right" for="storagestructurename">
+            仓房结构名称:
+        </label> <div class="col-sm-4">
+        <input type="text" name="storagestructurename" id="storagestructurename" class="form-control"
+               th:value="${item.storagestructurename}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="orderno">
+            仓房结构排序号:
+        </label> <div class="col-sm-4">
+        <input type="text" name="orderno" id="orderno" class="form-control"
+               th:value="${item.orderno}"/>
+    </div>
     </div>
 
-    <div class="form-group">
-        <label class="col-sm-4 control-label no-padding-right" for="conttypename">
-            <span class="red">*</span>合同类型名称:
-        </label>
-
-        <div class="col-sm-4">
-            <input type="text" name="conttypename" id="conttypename" class="form-control"
-                   data-bv-notempty th:value="${item.conttypename}"
-                   placeholder="合同类型名称"/>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-4 control-label no-padding-right" for="buysellflag">
-            <span class="red">*</span>购销标志: </label>
-
-        <div class="col-sm-4">
-            <select id="buysellflag" name="buysellflag" class="form-control"
-                    data-bv-notempty th:value="${item.buysellflag}">
-            </select>
-        </div>
-    </div>
 
 
     <div class="form-group">
@@ -67,7 +49,7 @@
 </body>
 </html>
 <script th:inline="javascript">
-    var urlPrefix="/graindepot-bussiness";
+    var urlPrefix="/graindepot-base";
     //var urlPrefix = "";
     var g_id = [[${id}]];
     var g_item = [[${item}]];
@@ -75,20 +57,8 @@
         //初始化form验证
         initForm();
         //初始化下拉框
-        //1.初始购销标志
-        initBuySellFlag();
     });
 
-
-    function initBuySellFlag() {
-        var data = [{value: 1, text: "采购"}, {value: -1, text: "销售"}];
-        $("#buysellflag").bootstrapselect({
-            data: data,
-            valueField: 'value',
-            textField: 'text',
-            defaultValue: g_item.buysellflag
-        });
-    }
 
     function toBack() {
         parent.$.bootstrapBox.dialog.close();
@@ -97,17 +67,17 @@
     function initForm() {
         $('#validation-form').bootstrapValidator({
             fields: {
-                contTypeName: {
+                storagestructurename: {
                     validators: {
                         remote: {
-                            url: urlPrefix + '/contracttype/checkRepeat',
-                            message: '合同类型已存在',//提示消息
+                            url: urlPrefix + '/storagestructure/checkRepeat',
+                            message: '仓房结构已存在',//提示消息
                             //delay :  2000,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax（默认输入一个字符，提交一次，服务器压力太大）
                             type: 'POST',//请求方式
                             data: function (validator) {
                                 return {
-                                    conttypename: $("#conttypename").val(),
-                                    conttypeid: g_id
+                                    storagestructurename: $("#storagestructurename").val(),
+                                    storagestructureid: g_id
                                 };
                             }
                         }
@@ -119,9 +89,9 @@
             e.preventDefault();
             var param = turnArrayToJson($('form').serializeArray());
             if (g_id) {
-                param.contTypeID = g_id
+                param.storagestructureid = g_id
             }
-            $.post(urlPrefix + "/contracttype/edit", param, function (result) {
+            $.post(urlPrefix + "/storagestructure/edit", param, function (result) {
                 parent.toSave(result)
             })
         });

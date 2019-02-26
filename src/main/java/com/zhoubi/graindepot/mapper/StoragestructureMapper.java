@@ -1,1 +1,1 @@
-package com.zhoubi.graindepot.mapper;import com.zhoubi.graindepot.base.BaseMapper;import com.zhoubi.graindepot.bean.Storagestructure;public interface StoragestructureMapper extends BaseMapper<Storagestructure> {}
+package com.zhoubi.graindepot.mapper;import com.zhoubi.graindepot.base.BaseMapper;import com.zhoubi.graindepot.bean.Storagestructure;import java.util.Map;public interface StoragestructureMapper extends BaseMapper<Storagestructure> {    int checkRepeat(Map map);}

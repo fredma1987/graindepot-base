@@ -1,0 +1,1 @@
+package com.zhoubi.graindepot.mapper;import com.zhoubi.graindepot.bean.Settle;import com.zhoubi.graindepot.base.BaseMapper;import java.util.Map;public interface SettleMapper extends BaseMapper<Settle> {    int checkRepeat(Map map);}

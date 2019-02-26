@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::head(${title})">
+</head>
+<body style="overflow-x: hidden">
+<form class="form-horizontal" role="form" id="validation-form" method="get">
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="storagecode">
+            仓房编码:
+        </label> <div class="col-sm-4">
+        <input type="text" name="storagecode" id="storagecode" class="form-control"
+               th:value="${item.storagecode}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="storagename">
+            仓房名称:
+        </label> <div class="col-sm-4">
+        <input type="text" name="storagename" id="storagename" class="form-control"
+               th:value="${item.storagename}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="storagealias">
+            仓房别名:
+        </label> <div class="col-sm-4">
+        <input type="text" name="storagealias" id="storagealias" class="form-control"
+               th:value="${item.storagealias}"/>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="companyid"> 企业: </label>
+
+        <div class="col-sm-4">
+            <select id="companyid" name="companyid" class="form-control" th:value="${item.companyid}">
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="graindepotid">
+            粮库:
+        </label> <div class="col-sm-4">
+        <select id="graindepotid" name="graindepotid" class="form-control" th:value="${item.graindepotid}">
+        </select>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="storagetypeid">
+            仓房类型:
+        </label> <div class="col-sm-4">
+        <select id="storagetypeid" name="storagetypeid" class="form-control"style="height:34px"
+                th:value="${item.storagetypeid}">
+        </select>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="storagestructureid">
+            仓房结构:
+        </label> <div class="col-sm-4">
+        <select id="storagestructureid" name="storagestructureid" class="form-control"style="height:34px"
+                th:value="${item.storagestructureid}">
+        </select>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="length">
+            仓房内墙长度:
+        </label> <div class="col-sm-4">
+        <input type="text" name="length" id="length" class="form-control"
+               th:value="${item.length}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="width">
+            仓房内墙宽度:
+        </label> <div class="col-sm-4">
+        <input type="text" name="width" id="width" class="form-control"
+               th:value="${item.width}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="height">
+            仓房顶高:
+        </label> <div class="col-sm-4">
+        <input type="text" name="height" id="height" class="form-control"
+               th:value="${item.height}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="capacitydesigned">
+            仓房设计仓容(吨):
+        </label> <div class="col-sm-4">
+        <input type="text" name="capacitydesigned" id="capacitydesigned" class="form-control"
+               th:value="${item.capacitydesigned}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="actualcapacity">
+            粮堆设计体积(立方米):
+        </label> <div class="col-sm-4">
+        <input type="text" name="actualcapacity" id="actualcapacity" class="form-control"
+               th:value="${item.actualcapacity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="storageemp">
+            保管员:
+        </label> <div class="col-sm-4">
+        <input type="text" name="storageemp" id="storageemp" class="form-control"
+               th:value="${item.storageemp}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="longitude">
+            经度:
+        </label> <div class="col-sm-4">
+        <input type="text" name="longitude" id="longitude" class="form-control"
+               th:value="${item.longitude}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="latitude">
+            维度:
+        </label> <div class="col-sm-4">
+        <input type="text" name="latitude" id="latitude" class="form-control"
+               th:value="${item.latitude}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="openingdatestr">
+            启用日期:
+        </label> <div class="col-sm-4">
+        <input size="16" type="text" name="openingdatestr" id="openingdatestr"
+               th:value="${item.openingdatestr}"
+               readonly class="form_date form-control"></div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="storagestatus">
+            仓房状态:
+        </label> <div class="col-sm-4">
+        <select id="storagestatus" name="storagestatus" class="form-control"style="height:34px"
+                th:value="${item.storagestatus}">
+        </select>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="orderno">
+            排序号:
+        </label> <div class="col-sm-4">
+        <input type="text" name="orderno" id="orderno" class="form-control"
+               th:value="${item.orderno}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="sectioncount">
+            测温断面数量(列):
+        </label> <div class="col-sm-4">
+        <input type="text" name="sectioncount" id="sectioncount" class="form-control"
+               th:value="${item.sectioncount}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="layercount">
+            每断面层数(层):
+        </label> <div class="col-sm-4">
+        <input type="text" name="layercount" id="layercount" class="form-control"
+               th:value="${item.layercount}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="colcount">
+            每断面列数(行):
+        </label> <div class="col-sm-4">
+        <input type="text" name="colcount" id="colcount" class="form-control"
+               th:value="${item.colcount}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="diameter">
+            仓房内墙直径:
+        </label> <div class="col-sm-4">
+        <input type="text" name="diameter" id="diameter" class="form-control"
+               th:value="${item.diameter}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="insulation">
+            隔热设施:
+        </label> <div class="col-sm-4">
+        <input type="text" name="insulation" id="insulation" class="form-control"
+               th:value="${item.insulation}"/>
+    </div>
+    </div>
+    <!--<div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="ventilateid">
+            通风形式:
+        </label> <div class="col-sm-4">
+        <select id="ventilateid" name="ventilateid" class="form-control"style="height:34px"
+                th:value="${item.ventilateid}">
+        </select>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="fumigateid">
+            熏蒸形式:
+        </label> <div class="col-sm-4">
+        <select id="fumigateid" name="fumigateid" class="form-control"style="height:34px"
+                th:value="${item.fumigateid}">
+        </select>
+    </div>
+    </div>-->
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="wincount">
+            窗户数量:
+        </label> <div class="col-sm-4">
+        <input type="text" name="wincount" id="wincount" class="form-control"
+               th:value="${item.wincount}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="doorcount">
+            仓门数量:
+        </label> <div class="col-sm-4">
+        <input type="text" name="doorcount" id="doorcount" class="form-control"
+               th:value="${item.doorcount}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="constructyear">
+            建造年代:
+        </label> <div class="col-sm-4">
+        <input type="text" name="constructyear" id="constructyear" class="form-control"
+               th:value="${item.constructyear}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="wheatdensity">
+            小麦密度:
+        </label> <div class="col-sm-4">
+        <input type="text" name="wheatdensity" id="wheatdensity" class="form-control"
+               th:value="${item.wheatdensity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="wheatcapacity">
+            小麦仓容:
+        </label> <div class="col-sm-4">
+        <input type="text" name="wheatcapacity" id="wheatcapacity" class="form-control"
+               th:value="${item.wheatcapacity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="ricedensity">
+            稻谷密度:
+        </label> <div class="col-sm-4">
+        <input type="text" name="ricedensity" id="ricedensity" class="form-control"
+               th:value="${item.ricedensity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="ricecapacity">
+            稻谷仓容:
+        </label> <div class="col-sm-4">
+        <input type="text" name="ricecapacity" id="ricecapacity" class="form-control"
+               th:value="${item.ricecapacity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="corndensity">
+            玉米密度:
+        </label> <div class="col-sm-4">
+        <input type="text" name="corndensity" id="corndensity" class="form-control"
+               th:value="${item.corndensity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="corncapacity">
+            玉米仓容:
+        </label> <div class="col-sm-4">
+        <input type="text" name="corncapacity" id="corncapacity" class="form-control"
+               th:value="${item.corncapacity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="soydensity">
+            大豆密度:
+        </label> <div class="col-sm-4">
+        <input type="text" name="soydensity" id="soydensity" class="form-control"
+               th:value="${item.soydensity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="soycapacity">
+            大豆仓容:
+        </label> <div class="col-sm-4">
+        <input type="text" name="soycapacity" id="soycapacity" class="form-control"
+               th:value="${item.soycapacity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="ghlineheight">
+            设计粮堆线高:
+        </label> <div class="col-sm-4">
+        <input type="text" name="ghlineheight" id="ghlineheight" class="form-control"
+               th:value="${item.ghlineheight}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="storetec">
+            储粮技术应用:
+        </label> <div class="col-sm-4">
+        <input type="text" name="storetec" id="storetec" class="form-control"
+               th:value="${item.storetec}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="defgrainid">
+            当前仓粮食品种:
+        </label> <div class="col-sm-4">
+        <select id="defgrainid" name="defgrainid" class="form-control"style="height:34px"
+                th:value="${item.defgrainid}">
+        </select>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="defgrainattrid">
+            当前仓粮食性质:
+        </label> <div class="col-sm-4">
+        <select id="defgrainattrid" name="defgrainattrid" class="form-control"style="height:34px"
+                th:value="${item.defgrainattrid}">
+        </select>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="defproducingyear">
+            当前仓收获年度:
+        </label> <div class="col-sm-4">
+        <input type="text" name="defproducingyear" id="defproducingyear" class="form-control"
+               th:value="${item.defproducingyear}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="videoid1">
+            仓房视频1:
+        </label> <div class="col-sm-4">
+        <input type="text" name="videoid1" id="videoid1" class="form-control"
+               th:value="${item.videoid1}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="videoid2">
+            仓房视频2:
+        </label> <div class="col-sm-4">
+        <input type="text" name="videoid2" id="videoid2" class="form-control"
+               th:value="${item.videoid2}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="videoid3">
+            仓房视频3:
+        </label> <div class="col-sm-4">
+        <input type="text" name="videoid3" id="videoid3" class="form-control"
+               th:value="${item.videoid3}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="effectcapacity">
+            仓房实际仓容:
+        </label> <div class="col-sm-4">
+        <input type="text" name="effectcapacity" id="effectcapacity" class="form-control"
+               th:value="${item.effectcapacity}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="eavesheight">
+            仓房檐高:
+        </label> <div class="col-sm-4">
+        <input type="text" name="eavesheight" id="eavesheight" class="form-control"
+               th:value="${item.eavesheight}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="storagearea">
+            仓房面积:
+        </label> <div class="col-sm-4">
+        <input type="text" name="storagearea" id="storagearea" class="form-control"
+               th:value="${item.storagearea}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="doorlength">
+            仓门长:
+        </label> <div class="col-sm-4">
+        <input type="text" name="doorlength" id="doorlength" class="form-control"
+               th:value="${item.doorlength}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="doorwidth">
+            仓门宽:
+        </label> <div class="col-sm-4">
+        <input type="text" name="doorwidth" id="doorwidth" class="form-control"
+               th:value="${item.doorwidth}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="doorheight">
+            仓门高:
+        </label> <div class="col-sm-4">
+        <input type="text" name="doorheight" id="doorheight" class="form-control"
+               th:value="${item.doorheight}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="ductlength">
+            通风道长:
+        </label> <div class="col-sm-4">
+        <input type="text" name="ductlength" id="ductlength" class="form-control"
+               th:value="${item.ductlength}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="ductwidth">
+            通风道宽:
+        </label> <div class="col-sm-4">
+        <input type="text" name="ductwidth" id="ductwidth" class="form-control"
+               th:value="${item.ductwidth}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="ductheight">
+            通风道高:
+        </label> <div class="col-sm-4">
+        <input type="text" name="ductheight" id="ductheight" class="form-control"
+               th:value="${item.ductheight}"/>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-4 control-label no-padding-right" for="ductcount">
+            通风道数量:
+        </label> <div class="col-sm-4">
+        <input type="text" name="ductcount" id="ductcount" class="form-control"
+               th:value="${item.ductcount}"/>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 center">
+            <button class="btn btn-info" type="submit">
+                <i class="icon-ok bigger-110"></i>
+                保存
+            </button>
+            &nbsp; &nbsp; &nbsp;
+            <button class="btn" type="button" onclick="toBack()">
+                <i class="icon-arrow-left bigger-110"></i>
+                返回
+            </button>
+        </div>
+    </div>
+
+</form>
+
+</body>
+</html>
+<script th:inline="javascript">
+    var urlPrefix="/graindepot-base";
+    //var urlPrefix = "";
+    var g_id = [[${id}]];
+    var g_item = [[${item}]];
+    $(function () {
+        //初始化form验证
+        initForm();
+        //初始化下拉框
+        comm_initCompany();
+        comm_initStorageType();
+        comm_initStorageStructure();
+        comm_initDefGrain();
+        comm_initDefGrainattr();
+        comm_initStoragestatus();
+    });
+
+    function toBack() {
+        parent.$.bootstrapBox.dialog.close();
+    }
+
+    function initForm() {
+        $('#validation-form').bootstrapValidator({
+            fields: {
+                groupname: {
+                    validators: {
+                        remote: {
+                            url: urlPrefix + '/storage/checkRepeat',
+                            message: '企业已存在',//提示消息
+                            //delay :  2000,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax（默认输入一个字符，提交一次，服务器压力太大）
+                            type: 'POST',//请求方式
+                            data: function (validator) {
+                                return {
+                                    storagename: $("#storagename").val(),
+                                    storageid: g_id
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv', function (e) {
+            // 组织表单提交改为ajax提交
+            e.preventDefault();
+            var param = turnArrayToJson($('form').serializeArray());
+            if (g_id) {
+                param.storageid = g_id
+            }
+            $.post(urlPrefix + "/storage/edit", param, function (result) {
+                parent.toSave(result)
+            })
+        });
+    }
+
+
+</script>

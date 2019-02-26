@@ -1,0 +1,1 @@
+package com.zhoubi.graindepot.mapper;import com.zhoubi.graindepot.bean.Group;import com.zhoubi.graindepot.base.BaseMapper;import java.util.Map;public interface GroupMapper extends BaseMapper<Group> {    int checkRepeat(Map map);}

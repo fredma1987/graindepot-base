@@ -31,31 +31,25 @@
                 删除粮食品种
             </button>
         </div>
-        <div class="col-sm-9">
-
-            <div class="col-sm-3">
+        <div class="col-sm-8">
+            <div class="col-sm-4">
                 <div class="input-group">
                     <span class="input-group-addon">粮食品种名称:</span>
-                    <input id="grainname" name="grainname" type="text"
-                           class="form-control" placeholder="grainname">
+                    <input id="grainname" name="grainname" type="text">
                 </div>
             </div>
-            <div class="col-sm-2">
-                <button class="btn btn-sm btn-success" onclick="javascript:searchTable()">
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-success" onclick="searchTable()">
                     <i class="icon-search align-top bigger-125"></i>
                     查询
                 </button>
-                <button class="btn btn-sm btn-warning" onclick="javascript:rest()">
+                <button class="btn btn-sm btn-warning" onclick="rest()">
                     <i class="icon-undo align-top bigger-125"></i>
                     重置
                 </button>
             </div>
-
         </div>
-
-
     </div>
-
 
     <div class="table-responsive" style="width:100%">
 
@@ -93,13 +87,13 @@
 
 
 <script type="text/javascript">
-    //var urlPrefix="/graindepot-bussiness";
-    var urlPrefix = "";
+    var urlPrefix="/graindepot-base";
+    //var urlPrefix = "";
     var theTable;
     function selectOnchang(o) {
         //获取全部打钩的check的值
         //$('#myTable th input:checkbox:checked')
-        console.log($('#myTable').bootstrapTable("getChecked"))
+        //console.log($('#myTable').bootstrapTable("getChecked"))
     }
     $(document).ready(function () {
         query();
@@ -116,10 +110,10 @@
                 type: "GET"
             },
             columns: [
-                {data: "graincateStr"},
+                {data: "graincatestr"},
                 {data: "graincode"},
                 {data: "grainname"},
-                {data: "grainkindStr"},
+                {data: "grainkindstr"},
                 {data: "gbgraincode"},
                 {data: "orderno"},
                 {
@@ -160,10 +154,10 @@
 
 
     function doDel() {
-        console.log($('#myTable').bootstrapTable("getChecked"))
+        console.log($('#myTable').bootstrapTable("getChecked"));
         var checkedList = $('#myTable').bootstrapTable("getChecked");
         if (checkedList.length == 0) {
-            $.bootstrapBox.alert.init({message: "请选择需要删除的行"})
+            $.bootstrapBox.alert.init({message: "请选择需要删除的行"});
             return
         }
         $.bootstrapBox.confirm.init({

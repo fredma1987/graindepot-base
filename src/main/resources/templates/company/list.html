@@ -16,7 +16,7 @@
             </li>
             <li>
                 <i class="icon-table home-icon"></i>
-                粮食性质
+                企业信息
             </li>
         </ul>
     </div>
@@ -24,20 +24,18 @@
         <div class="col-sm-3">
             <button class="btn btn-sm btn-primary" onclick="toAdd()">
                 <i class="icon-plus align-top bigger-125"></i>
-                添加粮食性质
+                添加企业
             </button>
             <button class="btn btn-sm btn-danger" onclick="doDel()">
                 <i class="icon-trash align-top bigger-125"></i>
-                删除粮食性质
+                删除企业
             </button>
         </div>
         <div class="col-sm-8">
-
             <div class="col-sm-4">
                 <div class="input-group">
-                    <span class="input-group-addon">粮食性质名称:</span>
-                    <input id="grainattrname" name="grainattrname" type="text"
-                           class="form-control">
+                    <span class="input-group-addon">企业名称:</span>
+                    <input id="companyname" name="companyname" type="text">
                 </div>
             </div>
             <div class="col-sm-4">
@@ -50,12 +48,8 @@
                     重置
                 </button>
             </div>
-
         </div>
-
-
     </div>
-
 
     <div class="table-responsive" style="width:100%">
 
@@ -69,10 +63,12 @@
                         <span class="lbl"></span>
                     </label>
                 </th>
-                <th style="width: 100px">粮食性质编码</th>
-                <th style="width: 100px">粮食性质名称</th>
-                <th style="width: 100px">粮食性质国标编码</th>
-                <th style="width: 100px">排序号</th>
+                <th style="width: 100px">企业编码</th>
+                <th style="width: 100px">企业名称</th>
+                <th style="width: 100px">企业地址</th>
+                <th style="width: 100px">企业法人代表</th>
+                <th style="width: 100px">联系人</th>
+                <th style="width: 100px">联系电话</th>
                 <th style="width: 100px">操作</th>
 
             </tr>
@@ -97,7 +93,7 @@
     function selectOnchang(o) {
         //获取全部打钩的check的值
         //$('#myTable th input:checkbox:checked')
-        console.log($('#myTable').bootstrapTable("getChecked"))
+        //console.log($('#myTable').bootstrapTable("getChecked"))
     }
     $(document).ready(function () {
         query();
@@ -109,17 +105,19 @@
         theTable = $('#myTable').bootstrapTable({
             //数据来源（包括处理分页，排序，过滤） ，即url，action，接口，等等
             ajax: {
-                url: urlPrefix + "/grainattr/list/page",
+                url: urlPrefix + "/company/list/page",
                 data: param,
                 type: "GET"
             },
             columns: [
-                {data: "grainattrcode"},
-                {data: "grainattrname"},
-                {data: "gbgrainattrcode"},
-                {data: "orderno"},
+                {data: "companycode"},
+                {data: "companyname"},
+                {data: "comaddress"},
+                {data: "artificialperson"},
+                {data: "linkman"},
+                {data: "telnumber"},
                 {
-                    data: "grainattrid",
+                    data: "companyid",
                     render: function (data, type, row) {
                         return '<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">' +
                                 '<a class="green" href="javascript:toEdit(' + data + ')"' +
@@ -140,7 +138,7 @@
     }
     function getParam() {
         var param = {};
-        param.grainattrname = $("#grainattrname").val();
+        param.companyname = $("#companyname").val();
         return param
     }
 
@@ -167,9 +165,9 @@
             callback: function (result) {
                 if (result) {
                     var ids = checkedList.map(function (curr) {
-                        return curr.grainattrid
+                        return curr.companyid
                     });
-                    $.post(urlPrefix + "/grainattr/del", {ids: ids.join(",")}, function (result) {
+                    $.post(urlPrefix + "/company/del", {ids: ids.join(",")}, function (result) {
                         $.bootstrapBox.alert.init({
                             message: result.message
                         });
@@ -185,32 +183,22 @@
 
     function toAdd() {
         $.bootstrapBox.dialog.init({
-            title: "新增粮食性质",
-            url: urlPrefix + "/page/grainattr/edit",
+            title: "新增企业",
+            url: urlPrefix + "/page/company/edit",
             width: $(window).width() * 0.6,
-            height: $(window).height() * 0.4
+            height: $(window).height() * 0.8
         })
     }
 
     function toEdit(id) {
         $.bootstrapBox.dialog.init({
-            title: "修改粮食性质",
-            url: urlPrefix + "/page/grainattr/edit?id=" + id,
+            title: "修改企业信息",
+            url: urlPrefix + "/page/company/edit?id=" + id,
             width: $(window).width() * 0.6,
-            height: $(window).height() * 0.4
+            height: $(window).height() * 0.8
         })
     }
 
-
-    /* function toDetail(userid) {
-     $.bootstrapBox.dialog.init({
-     title: "粮食性质详情",
-     url: urlPrefix + "/page/grainattr/detail/" + userid,
-     width: $(window).width() * 0.5,
-     height: $(window).height() * 0.5
-     })
-     }
-     */
 
     function toSave(result) {
         $.bootstrapBox.dialog.close();

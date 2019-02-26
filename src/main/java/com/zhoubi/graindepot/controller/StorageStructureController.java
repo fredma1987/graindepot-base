@@ -2,8 +2,10 @@ package com.zhoubi.graindepot.controller;
 
 import com.zhoubi.graindepot.base.JsonResult;
 import com.zhoubi.graindepot.base.PagerModel;
-import com.zhoubi.graindepot.bean.Contracttype;
-import com.zhoubi.graindepot.biz.ContracttypeBiz;
+import com.zhoubi.graindepot.bean.Grainattr;
+import com.zhoubi.graindepot.bean.Storagestructure;
+import com.zhoubi.graindepot.biz.GrainattrBiz;
+import com.zhoubi.graindepot.biz.StoragestructureBiz;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,56 +21,55 @@ import java.util.Map;
  * Created by 1A12 on 2019/1/19/0019.
  */
 @RestController
-@RequestMapping("contracttype")
-public class ContracttypeController extends BaseController {
+@RequestMapping("storagestructure")
+public class StorageStructureController extends BaseController {
     @Autowired
-    private ContracttypeBiz contracttypeBiz;
+    private StoragestructureBiz storagestructureBiz;
 
     @GetMapping("/list/page")
-    public PagerModel contracttypePageList(int start, int length, Integer buysellflag) {
-        PagerModel<Contracttype> e = new PagerModel();
-        e.addOrder("conttypeid desc");
+    public PagerModel storagestructurePageList(int start, int length, String storagestructurename) {
+        PagerModel<Storagestructure> e = new PagerModel();
+        e.addOrder("orderno desc");
         e.setStart(start);
         e.setLength(length);
-        if (buysellflag != null) {
-            e.putWhere("buysellflag", buysellflag);
+        if (storagestructurename != null) {
+            e.putWhere("storagestructurename", "%"+storagestructurename+"%");
         }
-        PagerModel<Contracttype> result = contracttypeBiz.selectListByPage(e);
+        PagerModel<Storagestructure> result = storagestructureBiz.selectListByPage(e);
         return result;
     }
-    @GetMapping
 
     @PostMapping("/edit")
-    public JsonResult contracttypeEdit(Contracttype item) throws ParseException {
+    public JsonResult storagestructureEdit(Storagestructure item) throws ParseException {
 
-        if (item.getConttypeid() == null) {
+        if (item.getStoragestructureid() == null) {
             //新增
-            contracttypeBiz.insert(item);
+            storagestructureBiz.insert(item);
             return new JsonResult("添加成功", true);
         } else {
             //修改
-            contracttypeBiz.update(item);
+            storagestructureBiz.update(item);
             return new JsonResult("修改成功", true);
         }
 
     }
 
     @PostMapping("/del")
-    public JsonResult contracttypeDel(String ids) {
+    public JsonResult storagetypeDel(String ids) {
         if (StringUtils.isNotEmpty(ids)) {
             Map map = new HashMap();
             map.put("Where_IdsStr", ids);
-            contracttypeBiz.deleteMap(map);
+            storagestructureBiz.deleteMap(map);
         }
         return new JsonResult("删除成功", true);
     }
 
     @PostMapping("/checkRepeat")
-    public String checkRepeat(String conttypename, Integer conttypeid) {
+    public String checkRepeat(String storagestructurename, Integer storagestructureid) {
         Map map = new HashMap();
-        map.put("conttypename", conttypename);
-        map.put("conttypeid", conttypeid);
-        int result = contracttypeBiz.checkRepeat(map);
+        map.put("storagestructurename", storagestructurename);
+        map.put("storagestructureid", storagestructureid);
+        int result = storagestructureBiz.checkRepeat(map);
         if (result == 0) {
             return "{\"valid\":true}";
         } else {
