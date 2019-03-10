@@ -278,4 +278,24 @@ public class PageController extends BaseController {
         String path = "storage/edit";
         return path;
     }
+    //----------------------------------配置页信息---------------------------------------------
+    //配置页信息
+    @GetMapping("/option")
+    public String to_option(Model model) {
+        String title = "配置信息";
+        model.addAttribute("title", title);
+        String path = "option/edit";
+        return path;
+    }
+
+    //----------------------------------授权页信息---------------------------------------------
+    //授权页信息
+    @GetMapping("/authority")
+    public String to_authority(Model model) {
+        String title = "授权页";
+        model.addAttribute("title", title);
+        String path = "authority/list";
+        return path;
+    }
+
 }

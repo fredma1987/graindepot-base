@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head::head(${title})">
+</head>
+<body style="overflow-x: hidden">
+<div th:replace="navbar::navbar"></div>
+<div class="main-container" id="main-container">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home home-icon"></i>
+                首页
+            </li>
+            <li>
+                <i class="icon-table home-icon"></i>
+                配置项设置
+            </li>
+        </ul>
+    </div>
+    <form class="form-horizontal" role="form" style="margin-top: 6px" id="validation-form" method="get">
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label class="col-sm-4 control-label no-padding-right" for="1001">
+                    入库检斤流程:
+                </label>
+                <div class="col-sm-8">
+                    <select id="1001" name="1001" class="form-control">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label class="col-sm-4 control-label no-padding-right" for="1002">
+                    出库检斤流程:
+                </label>
+                <div class="col-sm-8">
+                    <select id="1002" name="1002" class="form-control">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label class="col-sm-4 control-label no-padding-right" for="1003">
+                    登记和质检是否合并:
+                </label>
+                <div class="col-sm-8">
+                    <select id="1003" name="1003" class="form-control">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label class="col-sm-4 control-label no-padding-right" for="1004">
+                    指定仓房对应环节:
+                </label>
+                <div class="col-sm-8">
+                    <select id="1004" name="1004" class="form-control">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label class="col-sm-4 control-label no-padding-right" for="1005">
+                    结算码单打印位置:
+                </label>
+                <div class="col-sm-8">
+                    <select id="1005" name="1005" class="form-control">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-sm-4">
+                <label class="col-sm-4 control-label no-padding-right" for="1006">
+                    是否启用盲检:
+                </label>
+                <div class="col-sm-8">
+                    <select id="1006" name="1006" class="form-control">
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-12 center">
+                <a class="btn btn-info" onclick="toSave()">
+                    <i class="icon-ok bigger-110"></i>
+                    保存
+                </a>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+</body>
+</html>
+<script th:inline="javascript">
+    var urlPrefix = "/graindepot-base";
+    //var urlPrefix = "";
+    var g_id = [[${id}]];
+    var g_item = [[${item}]];
+    $(function () {
+        //初始化form验证
+      //  initForm();
+        //初始化下拉框
+        init1001();
+        init1002();
+        init1003();
+        init1004();
+        init1005();
+        init1006();
+        //设置默认值
+        setDefault();
+    });
+
+    function init1001() {
+        var data = [{value: 1, text: "先称毛重再称皮重"}, {value: 2, text: "先称皮重再称毛重"}];
+        $("#1001").bootstrapSelect({
+            data: data,
+            valueField: 'value',
+            textField: 'text',
+            all: false
+        });
+    }
+
+    function init1002() {
+        var data = [{value: 1, text: "先称毛重再称皮重"}, {value: 2, text: "先称皮重再称毛重"}];
+        $("#1002").bootstrapSelect({
+            data: data,
+            valueField: 'value',
+            textField: 'text',
+            all: false
+        });
+    }
+
+    function init1003() {
+        var data = [{value: 1, text: "登记和质检合并操作"}, {value: 2, text: "登记和质检分开操作"}];
+        $("#1003").bootstrapSelect({
+            data: data,
+            valueField: 'value',
+            textField: 'text',
+            all: false
+        });
+    }
+
+    function init1004() {
+        var data = [{value: 1, text: "登记处指定"}, {value: 2, text: "检验处指定"}, {value: 3, text: "检斤处指定"}];
+        $("#1004").bootstrapSelect({
+            data: data,
+            valueField: 'value',
+            textField: 'text',
+            all: false,
+            multiple: true
+        });
+    }
+
+    function init1005() {
+        var data = [{value: 1, text: "检斤处打印"}, {value: 2, text: "结算处打印"}];
+        $("#1005").bootstrapSelect({
+            data: data,
+            valueField: 'value',
+            textField: 'text',
+            all: false
+        });
+    }
+
+    function init1006() {
+        var data = [{value: 1, text: "启用，扫描（条码/二维码/微信号）进入检验单"}, {value: 2, text: "不启用，扦样检验合并操作"}];
+        $("#1006").bootstrapSelect({
+            data: data,
+            valueField: 'value',
+            textField: 'text',
+            all: false
+        });
+    }
+
+
+    function toBack() {
+        parent.$.bootstrapBox.dialog.close();
+    }
+
+    function toSave() {
+        var param = turnArrayToJson($('form').serializeArray());
+        param["1004"]=$("#1004").bootstrapSelect("getValue").join(",");
+        var item=[];
+        for(var key in param){
+            item.push({
+                optioncode:key,
+                optionvalue:param[key]
+            })
+        }
+        console.log(item)
+        $.post("/graindepot-base/option/saveOption", {listStr:JSON.stringify(item)}, function (result) {
+            $.bootstrapBox.alert.init({message:result.message})
+        })
+    }
+
+    function setDefault() {
+        $.get("/graindepot-base/option/getOptions").then(function (result) {
+            result.data.forEach(function (curr, index) {
+                $("#" + curr.optioncode).bootstrapSelect("setValue", curr.optionvalue)
+            })
+        })
+    }
+
+
+</script>

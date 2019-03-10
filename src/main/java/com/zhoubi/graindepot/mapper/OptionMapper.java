@@ -1,0 +1,1 @@
+package com.zhoubi.graindepot.mapper;import com.zhoubi.graindepot.base.BaseMapper;import com.zhoubi.graindepot.bean.Option;import java.util.List;import java.util.Map;public interface OptionMapper extends BaseMapper<Option> {    Option getDefaultOption(Map param);    //获取某个库点的配置项 包含粮库未设置项    List<Option> getOptions(Map map);}

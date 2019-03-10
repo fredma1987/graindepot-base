@@ -1,0 +1,1 @@
+package com.zhoubi.graindepot.mapper;import com.zhoubi.graindepot.bean.Authority;import com.zhoubi.graindepot.base.BaseMapper;import com.zhoubi.graindepot.bean.BaseUser;import java.util.List;import java.util.Map;public interface AuthorityMapper extends BaseMapper<Authority> {    List<BaseUser> getUserList(Map param);    List<Authority> isAllow(Map param);}
