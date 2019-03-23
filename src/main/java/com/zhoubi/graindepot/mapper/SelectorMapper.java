@@ -42,4 +42,5 @@ public interface SelectorMapper {
     List<BaseMenu> menuList(Map param);
 
     List<BaseUgroup> ugroupList(Map param);
+    List<Equiptype> equiptypeList(Map param);
 }

@@ -84,4 +84,8 @@ public class SelectorBiz {
     public List<BaseUgroup> ugroupList(Map param) {
         return mapper.ugroupList(param);
     }
+
+    public List<Equiptype> equiptypeList(Map param){
+        return mapper.equiptypeList(param);
+    }
 }

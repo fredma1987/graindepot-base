@@ -163,5 +163,14 @@ public class SelectorController extends BaseController {
         List<BaseUgroup> resultList = selectorBiz.ugroupList(param);
         return resultList;
     }
+    //设备类型
+    @GetMapping("equiptypeList")
+    public List<Equiptype> equiptypeList(HttpServletRequest request) {
+        UserAddress ua = getUserAddress();
+        Map param = new HashMap();
+        param.put("graindepotid",ua.getGraindepotid());
+        List<Equiptype> resultList = selectorBiz.equiptypeList(param);
+        return resultList;
+    }
 
 }
