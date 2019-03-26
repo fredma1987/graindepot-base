@@ -43,4 +43,6 @@ public interface SelectorMapper {
 
     List<BaseUgroup> ugroupList(Map param);
     List<Equiptype> equiptypeList(Map param);
+
+    List<Drugkind> drugkindList(Map param);
 }

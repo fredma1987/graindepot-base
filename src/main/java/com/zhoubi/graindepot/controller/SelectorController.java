@@ -172,5 +172,14 @@ public class SelectorController extends BaseController {
         List<Equiptype> resultList = selectorBiz.equiptypeList(param);
         return resultList;
     }
+    //药剂类型
+    @GetMapping("drugkindList")
+    public List<Drugkind> drugkindList(HttpServletRequest request) {
+        UserAddress ua = getUserAddress();
+        Map param = new HashMap();
+        param.put("graindepotid",ua.getGraindepotid());
+        List<Drugkind> resultList = selectorBiz.drugkindList(param);
+        return resultList;
+    }
 
 }

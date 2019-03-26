@@ -88,4 +88,8 @@ public class SelectorBiz {
     public List<Equiptype> equiptypeList(Map param){
         return mapper.equiptypeList(param);
     }
+
+    public List<Drugkind> drugkindList(Map param){
+        return mapper.drugkindList(param);
+    }
 }
