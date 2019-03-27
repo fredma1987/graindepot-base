@@ -45,4 +45,6 @@ public interface SelectorMapper {
     List<Equiptype> equiptypeList(Map param);
 
     List<Drugkind> drugkindList(Map param);
+    List<PlanfileOutplan> outplanList(Map param);
+    List<Drug> drugList(Map param);
 }

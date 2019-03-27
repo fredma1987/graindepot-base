@@ -20,38 +20,44 @@ public class SelectorController extends BaseController {
 
     @Autowired
     private SelectorBiz selectorBiz;
+
     //省下拉框
     @GetMapping("provinceList")
-    public List<Province> provinceList(HttpServletRequest request){
-        Map param=new HashMap();
-        List<Province> provinceList=selectorBiz.provinceList(param);
+    public List<Province> provinceList(HttpServletRequest request) {
+        Map param = new HashMap();
+        List<Province> provinceList = selectorBiz.provinceList(param);
         return provinceList;
     }
+
     //市州下拉框
     @GetMapping("cityList")
-    public List<City> cityList(HttpServletRequest request,@RequestParam Map param){
-        List<City> cityList=selectorBiz.cityList(param);
+    public List<City> cityList(HttpServletRequest request, @RequestParam Map param) {
+        List<City> cityList = selectorBiz.cityList(param);
         return cityList;
     }
+
     //区县下拉框
     @GetMapping("countyList")
-    public List<County> countyList(HttpServletRequest request,@RequestParam Map param){
-        List<County> countyList=selectorBiz.countyList(param);
+    public List<County> countyList(HttpServletRequest request, @RequestParam Map param) {
+        List<County> countyList = selectorBiz.countyList(param);
         return countyList;
     }
+
     //集团下拉框
     @GetMapping("groupList")
-    public List<Group> groupList(HttpServletRequest request,@RequestParam Map param){
-        List<Group> groupList=selectorBiz.groupList(param);
+    public List<Group> groupList(HttpServletRequest request, @RequestParam Map param) {
+        List<Group> groupList = selectorBiz.groupList(param);
         return groupList;
     }
+
     //企业下拉框
     @GetMapping("companyList")
-    public List<Company> companyList(HttpServletRequest request,@RequestParam Map param) {
+    public List<Company> companyList(HttpServletRequest request, @RequestParam Map param) {
         List<Company> resultList = selectorBiz.companyList(param);
         return resultList;
 
     }
+
     //粮库下拉框
     @GetMapping("graindepotList")
     public List<Graindepot> graindepotList(HttpServletRequest request, @RequestParam Map param) {
@@ -59,20 +65,22 @@ public class SelectorController extends BaseController {
         return resultList;
 
     }
+
     //仓房下拉框
     @GetMapping("storageList")
     public List<Storage> storageList(HttpServletRequest request, @RequestParam Map param) {
         if (param.get("graindepotid") != null) {
             param.put("graindepotid", param.get("graindepotid"));
-        }else{
+        } else {
             UserAddress ua = getUserAddress();
-            if(ua!=null)
+            if (ua != null)
                 param.put("graindepotid", ua.getGraindepotid());
         }
         List<Storage> resultList = selectorBiz.storageList(param);
         return resultList;
 
     }
+
     //粮食品种下拉框
     @GetMapping("grainList")
     public List<Grain> grainList(HttpServletRequest request) {
@@ -96,7 +104,7 @@ public class SelectorController extends BaseController {
     public List<Trader> traderList(HttpServletRequest request) {
         UserAddress ua = getUserAddress();
         Map param = new HashMap();
-        param.put("graindepotid",ua.getGraindepotid());
+        param.put("graindepotid", ua.getGraindepotid());
         List<Trader> resultList = selectorBiz.traderList(param);
         return resultList;
 
@@ -104,15 +112,16 @@ public class SelectorController extends BaseController {
 
     //合同类型下拉框
     @GetMapping("contracttypeList")
-    public List<Contracttype> contracttypeList(HttpServletRequest request,Integer buysellflag) {
+    public List<Contracttype> contracttypeList(HttpServletRequest request, Integer buysellflag) {
         Map param = new HashMap();
-        if (buysellflag!=null) {
-            param.put("buysellflag",buysellflag);
+        if (buysellflag != null) {
+            param.put("buysellflag", buysellflag);
         }
         List<Contracttype> resultList = selectorBiz.contracttypeList(param);
         return resultList;
 
     }
+
     //仓房结构下拉框
     @GetMapping("storagestructureList")
     public List<Storagestructure> storagestructureList(HttpServletRequest request) {
@@ -121,6 +130,7 @@ public class SelectorController extends BaseController {
         return resultList;
 
     }
+
     //仓房类型下拉框
     @GetMapping("storagetypeList")
     public List<Storagetype> storagetypeList(HttpServletRequest request) {
@@ -129,6 +139,7 @@ public class SelectorController extends BaseController {
         return resultList;
 
     }
+
     //结算方式下拉框
     @GetMapping("settleList")
     public List<Settle> settleList(HttpServletRequest request) {
@@ -137,16 +148,18 @@ public class SelectorController extends BaseController {
         return resultList;
 
     }
+
     //账户下拉框
     @GetMapping("accountList")
     public List<Account> accountList(HttpServletRequest request) {
         UserAddress ua = getUserAddress();
         Map param = new HashMap();
-        param.put("graindepotid",ua.getGraindepotid());
+        param.put("graindepotid", ua.getGraindepotid());
         List<Account> resultList = selectorBiz.accountList(param);
         return resultList;
 
     }
+
     //菜单下拉框
     @GetMapping("menuList")
     public List<BaseMenu> menuList(HttpServletRequest request) {
@@ -155,6 +168,7 @@ public class SelectorController extends BaseController {
         List<BaseMenu> resultList = selectorBiz.menuList(param);
         return resultList;
     }
+
     //用户组下拉框
     @GetMapping("ugroupList")
     public List<BaseUgroup> ugroupList(HttpServletRequest request) {
@@ -163,22 +177,43 @@ public class SelectorController extends BaseController {
         List<BaseUgroup> resultList = selectorBiz.ugroupList(param);
         return resultList;
     }
+
     //设备类型
     @GetMapping("equiptypeList")
     public List<Equiptype> equiptypeList(HttpServletRequest request) {
         UserAddress ua = getUserAddress();
         Map param = new HashMap();
-        param.put("graindepotid",ua.getGraindepotid());
+        param.put("graindepotid", ua.getGraindepotid());
         List<Equiptype> resultList = selectorBiz.equiptypeList(param);
         return resultList;
     }
+
     //药剂类型
     @GetMapping("drugkindList")
     public List<Drugkind> drugkindList(HttpServletRequest request) {
         UserAddress ua = getUserAddress();
         Map param = new HashMap();
-        param.put("graindepotid",ua.getGraindepotid());
+        param.put("graindepotid", ua.getGraindepotid());
         List<Drugkind> resultList = selectorBiz.drugkindList(param);
+        return resultList;
+    }
+
+    //出库计划文件
+    @GetMapping("outplanList")
+    public List<PlanfileOutplan> outplanList(HttpServletRequest request) {
+        UserAddress ua = getUserAddress();
+        Map param = new HashMap();
+        param.put("graindepotid", ua.getGraindepotid());
+        List<PlanfileOutplan> resultList = selectorBiz.outplanList(param);
+        return resultList;
+    }
+    //药剂
+    @GetMapping("drugList")
+    public List<Drug> drugList(HttpServletRequest request) {
+        UserAddress ua = getUserAddress();
+        Map param = new HashMap();
+        param.put("graindepotid", ua.getGraindepotid());
+        List<Drug> resultList = selectorBiz.drugList(param);
         return resultList;
     }
 

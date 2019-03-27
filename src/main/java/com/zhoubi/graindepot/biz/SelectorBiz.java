@@ -49,26 +49,27 @@ public class SelectorBiz {
         return mapper.grainattrList(param);
     }
 
-    public List<Trader> traderList(Map param){
+    public List<Trader> traderList(Map param) {
         return mapper.traderList(param);
     }
 
-    public List<Contracttype> contracttypeList(Map param){
+    public List<Contracttype> contracttypeList(Map param) {
         return mapper.contracttypeList(param);
     }
 
-    public List<Storagestructure> storagestructureList(Map param){
+    public List<Storagestructure> storagestructureList(Map param) {
         return mapper.storagestructureList(param);
     }
 
-    public List<Storagetype> storagetypeList(Map param){
+    public List<Storagetype> storagetypeList(Map param) {
         return mapper.storagetypeList(param);
     }
 
-    public List<Storage> storageList(Map param){
+    public List<Storage> storageList(Map param) {
         return mapper.storageList(param);
     }
-    public List<Settle> settleList(Map param){
+
+    public List<Settle> settleList(Map param) {
         return mapper.settleList(param);
     }
 
@@ -85,11 +86,19 @@ public class SelectorBiz {
         return mapper.ugroupList(param);
     }
 
-    public List<Equiptype> equiptypeList(Map param){
+    public List<Equiptype> equiptypeList(Map param) {
         return mapper.equiptypeList(param);
     }
 
-    public List<Drugkind> drugkindList(Map param){
+    public List<Drugkind> drugkindList(Map param) {
         return mapper.drugkindList(param);
+    }
+
+    public List<PlanfileOutplan> outplanList(Map param) {
+        return mapper.outplanList(param);
+    }
+
+    public List<Drug> drugList(Map param) {
+        return mapper.drugList(param);
     }
 }
