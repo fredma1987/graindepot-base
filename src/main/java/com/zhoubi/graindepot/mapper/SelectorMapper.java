@@ -47,4 +47,6 @@ public interface SelectorMapper {
     List<Drugkind> drugkindList(Map param);
     List<PlanfileOutplan> outplanList(Map param);
     List<Drug> drugList(Map param);
+
+    List<Truck> trucknumList(Map param);
 }

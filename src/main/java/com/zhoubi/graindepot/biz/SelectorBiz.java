@@ -101,4 +101,6 @@ public class SelectorBiz {
     public List<Drug> drugList(Map param) {
         return mapper.drugList(param);
     }
+
+    public List<Truck> trucknumList(Map param){return mapper.trucknumList(param);}
 }

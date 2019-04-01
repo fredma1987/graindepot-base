@@ -207,14 +207,16 @@ public class SelectorController extends BaseController {
         List<PlanfileOutplan> resultList = selectorBiz.outplanList(param);
         return resultList;
     }
-    //药剂
-    @GetMapping("drugList")
-    public List<Drug> drugList(HttpServletRequest request) {
+
+    //车船号
+    @GetMapping("trucknumList")
+    public List<Truck> trucknumList(HttpServletRequest request) {
         UserAddress ua = getUserAddress();
         Map param = new HashMap();
         param.put("graindepotid", ua.getGraindepotid());
-        List<Drug> resultList = selectorBiz.drugList(param);
+        List<Truck> resultList = selectorBiz.trucknumList(param);
         return resultList;
     }
+
 
 }
