@@ -218,5 +218,13 @@ public class SelectorController extends BaseController {
         return resultList;
     }
 
-
+    //用户
+//    @GetMapping("baseUserList")
+//    public List<BaseUser> baseUserList(HttpServletRequest request) {
+//        UserAddress ua = getUserAddress();
+//        Map param = new HashMap();
+//        param.put("graindepotid", ua.getGraindepotid());
+//        List<BaseUser> resultList = selectorBiz.trucknumList(param);
+//        return resultList;
+//    }
 }
