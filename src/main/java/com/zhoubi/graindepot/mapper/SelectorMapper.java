@@ -49,4 +49,6 @@ public interface SelectorMapper {
     List<Drug> drugList(Map param);
 
     List<Truck> trucknumList(Map param);
+
+    List<BaseUser> baseUserList(Map param);
 }
