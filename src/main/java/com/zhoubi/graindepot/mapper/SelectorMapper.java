@@ -35,6 +35,7 @@ public interface SelectorMapper {
     List<Storagetype> storagetypeList(Map param);
 
     List<Storage> storageList(Map param);
+
     List<Settle> settleList(Map param);
 
     List<Account> accountList(Map param);
@@ -42,13 +43,18 @@ public interface SelectorMapper {
     List<BaseMenu> menuList(Map param);
 
     List<BaseUgroup> ugroupList(Map param);
+
     List<Equiptype> equiptypeList(Map param);
 
     List<Drugkind> drugkindList(Map param);
+
     List<PlanfileOutplan> outplanList(Map param);
+
     List<Drug> drugList(Map param);
 
     List<Truck> trucknumList(Map param);
 
     List<BaseUser> baseUserList(Map param);
+
+    List<Noticetype> noticetypeList(Map param);
 }

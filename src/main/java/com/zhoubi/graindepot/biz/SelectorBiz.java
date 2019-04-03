@@ -105,4 +105,8 @@ public class SelectorBiz {
     public List<Truck> trucknumList(Map param){return mapper.trucknumList(param);}
 
     public List<BaseUser> baseUserList(Map param){return mapper.baseUserList(param);}
+
+    public List<Noticetype> noticetypeList(Map param){
+        return mapper.noticetypeList(param);
+    }
 }

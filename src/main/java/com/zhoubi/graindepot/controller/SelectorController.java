@@ -227,4 +227,14 @@ public class SelectorController extends BaseController {
         List<BaseUser> resultList = selectorBiz.baseUserList(param);
         return resultList;
     }
+
+    //通知公告类型
+    @GetMapping("noticetypeList")
+    public List<Noticetype> noticeList(HttpServletRequest request) {
+        UserAddress ua = getUserAddress();
+        Map param = new HashMap();
+        //param.put("graindepotid", ua.getGraindepotid());
+        List<Noticetype> resultList = selectorBiz.noticetypeList(param);
+        return resultList;
+    }
 }
